@@ -200,8 +200,10 @@ def main():
     # print(f"For {dataset_name}, vocab size is: {len(text_vocab_set)}")
     # print(f"For {dataset_name}, total {sum(duration_list)/3600:.2f} hours")
     if "ZH" in langs:
+        pass
         # print(f"Bad zh transcription case: {total_bad_case_zh}")
     if "EN" in langs:
+        pass
         # print(f"Bad en transcription case: {total_bad_case_en}\n")
 
 

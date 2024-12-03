@@ -176,6 +176,7 @@ async def listen_to_voice(text, server_ip='localhost', server_port=9999):
         # print("Audio playback finished.")
 
     except Exception as e:
+        pass
         # print(f"Error in listen_to_voice: {e}")
 
     finally:

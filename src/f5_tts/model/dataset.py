@@ -281,9 +281,9 @@ def load_dataset(
 
     elif dataset_type == "HFDataset":
         # print(
-            "Should manually modify the path of huggingface dataset to your need.\n"
-            + "May also the corresponding script cuz different dataset may have different format."
-        )
+        #     "Should manually modify the path of huggingface dataset to your need.\n"
+        #     + "May also the corresponding script cuz different dataset may have different format."
+        # )
         pre, post = dataset_name.split("_")
         train_dataset = HFDataset(
             load_dataset(f"{pre}/{pre}", split=f"train.{post}", cache_dir=str(files("f5_tts").joinpath("../../data"))),

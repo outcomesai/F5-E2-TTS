@@ -117,6 +117,7 @@ def load_vocoder(vocoder_name="vocos", is_local=False, local_path="", device=dev
         try:
             from third_party.BigVGAN import bigvgan
         except ImportError:
+            pass
             # print("You need to follow the README to init submodule and change the BigVGAN source code.")
         if is_local:
             """download from https://huggingface.co/nvidia/bigvgan_v2_24khz_100band_256x/tree/main"""
@@ -370,6 +371,7 @@ def infer_process(
     gen_text_batches = chunk_text(gen_text, max_chars=max_chars)
     for i, gen_text in enumerate(gen_text_batches):
         # print(f"gen_text {i}", gen_text)
+        pass
 
     show_info(f"Generating audio in {len(gen_text_batches)} batches...")
     return infer_batch_process(
