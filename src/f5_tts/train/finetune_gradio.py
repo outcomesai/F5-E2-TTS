@@ -467,7 +467,7 @@ def start_training(
     if ch_8bit_adam:
         cmd += " --bnb_optimizer True "
 
-    print("run command : \n" + cmd + "\n")
+    # print("run command : \n" + cmd + "\n")
 
     save_settings(
         dataset_name,
@@ -545,7 +545,7 @@ def start_training(
                 try:
                     while True:
                         output = stdout_queue.get_nowait()
-                        print(output, end="")
+                        # print(output, end="")
                         match = re.search(
                             r"Epoch (\d+)/(\d+):\s+(\d+)%\|.*\[(\d+:\d+)<.*?loss=(\d+\.\d+), step=(\d+)", output
                         )
@@ -573,7 +573,7 @@ def start_training(
                 try:
                     while True:
                         error_output = stderr_queue.get_nowait()
-                        print(error_output, end="")
+                        # print(error_output, end="")
                         if error_output.strip():
                             yield f"{error_output.strip()}", gr.update(interactive=False), gr.update(interactive=True)
                 except queue.Empty:
@@ -797,7 +797,7 @@ def create_metadata(name_project, ch_tokenizer, progress=gr.Progress()):
             duration = get_audio_duration(file_audio)
         except Exception as e:
             error_files.append([file_audio, "duration"])
-            print(f"Error processing {file_audio}: {e}")
+            # print(f"Error processing {file_audio}: {e}")
             continue
 
         if duration < 1 or duration > 25:
@@ -987,7 +987,7 @@ def calculate_train(
 def extract_and_save_ema_model(checkpoint_path: str, new_checkpoint_path: str, safetensors: bool) -> str:
     try:
         checkpoint = torch.load(checkpoint_path)
-        print("Original Checkpoint Keys:", checkpoint.keys())
+        # print("Original Checkpoint Keys:", checkpoint.keys())
 
         ema_model_state_dict = checkpoint.get("ema_model_state_dict", None)
         if ema_model_state_dict is None:
@@ -1228,7 +1228,7 @@ def infer(
             model_type=exp_name, ckpt_file=file_checkpoint, vocab_file=vocab_file, device=device_test, use_ema=use_ema
         )
 
-        print("update >> ", device_test, file_checkpoint, use_ema)
+        # print("update >> ", device_test, file_checkpoint, use_ema)
 
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as f:
         tts_api.infer(
@@ -1838,7 +1838,7 @@ Reduce the model size from 5GB to 1.3GB. The new checkpoint can be used for infe
 @click.option("--api", "-a", default=True, is_flag=True, help="Allow API access")
 def main(port, host, share, api):
     global app
-    print("Starting app...")
+    # print("Starting app...")
     app.queue(api_open=api).launch(server_name=host, server_port=port, share=share, show_api=api)
 
 

@@ -63,8 +63,8 @@ def main():
                 wers.extend(wers_)
 
         wer = round(np.mean(wers) * 100, 3)
-        print(f"\nTotal {len(wers)} samples")
-        print(f"WER      : {wer}%")
+        # print(f"\nTotal {len(wers)} samples")
+        # print(f"WER      : {wer}%")
 
     # --------------------------- SIM ---------------------------
     if eval_task == "sim":
@@ -76,8 +76,8 @@ def main():
                 sim_list.extend(sim_)
 
         sim = round(sum(sim_list) / len(sim_list), 3)
-        print(f"\nTotal {len(sim_list)} samples")
-        print(f"SIM      : {sim}")
+        # print(f"\nTotal {len(sim_list)} samples")
+        # print(f"SIM      : {sim}")
 
 
 if __name__ == "__main__":

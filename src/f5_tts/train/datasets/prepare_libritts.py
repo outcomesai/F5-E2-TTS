@@ -55,7 +55,7 @@ def main():
     # save preprocessed dataset to disk
     if not os.path.exists(f"{save_dir}"):
         os.makedirs(f"{save_dir}")
-    print(f"\nSaving to {save_dir} ...")
+    # print(f"\nSaving to {save_dir} ...")
 
     with ArrowWriter(path=f"{save_dir}/raw.arrow") as writer:
         for line in tqdm(result, desc="Writing to raw.arrow ..."):
@@ -70,9 +70,9 @@ def main():
         for vocab in sorted(text_vocab_set):
             f.write(vocab + "\n")
 
-    print(f"\nFor {dataset_name}, sample count: {len(result)}")
-    print(f"For {dataset_name}, vocab size is: {len(text_vocab_set)}")
-    print(f"For {dataset_name}, total {sum(duration_list)/3600:.2f} hours")
+    # print(f"\nFor {dataset_name}, sample count: {len(result)}")
+    # print(f"For {dataset_name}, vocab size is: {len(text_vocab_set)}")
+    # print(f"For {dataset_name}, total {sum(duration_list)/3600:.2f} hours")
 
 
 if __name__ == "__main__":
@@ -84,7 +84,7 @@ if __name__ == "__main__":
     dataset_dir = "<SOME_PATH>/LibriTTS"
     dataset_name = f"LibriTTS_{'_'.join(SUB_SET)}_{tokenizer}".replace("train-clean-", "").replace("train-other-", "")
     save_dir = str(files("f5_tts").joinpath("../../")) + f"/data/{dataset_name}"
-    print(f"\nPrepare for {dataset_name}, will save to {save_dir}\n")
+    # print(f"\nPrepare for {dataset_name}, will save to {save_dir}\n")
     main()
 
     # For LibriTTS_100_360_500_char, sample count: 354218

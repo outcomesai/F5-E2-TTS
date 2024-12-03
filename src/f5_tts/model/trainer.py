@@ -54,7 +54,7 @@ class Trainer:
 
         if logger == "wandb" and not wandb.api.api_key:
             logger = None
-        print(f"Using logger: {logger}")
+        # print(f"Using logger: {logger}")
         self.log_samples = log_samples
 
         self.accelerator = Accelerator(
@@ -146,7 +146,7 @@ class Trainer:
                 os.makedirs(self.checkpoint_path)
             if last:
                 self.accelerator.save(checkpoint, f"{self.checkpoint_path}/model_last.pt")
-                print(f"Saved last checkpoint at step {step}")
+                # print(f"Saved last checkpoint at step {step}")
             else:
                 self.accelerator.save(checkpoint, f"{self.checkpoint_path}/model_{step}.pt")
 

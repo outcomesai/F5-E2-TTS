@@ -162,7 +162,7 @@ def get_inference_prompt(
         batch_accum[bucket_i] += total_mel_len
 
         if batch_accum[bucket_i] >= infer_batch_size:
-            # print(f"\n{len(ref_mels[bucket_i][0][0])}\n{ref_mel_lens[bucket_i]}\n{total_mel_lens[bucket_i]}")
+            # # print(f"\n{len(ref_mels[bucket_i][0][0])}\n{ref_mel_lens[bucket_i]}\n{total_mel_lens[bucket_i]}")
             prompts_all.append(
                 (
                     utts[bucket_i],
@@ -399,7 +399,7 @@ def run_sim(args):
             emb2 = model(wav2)
 
         sim = F.cosine_similarity(emb1, emb2)[0].item()
-        # print(f"VSim score between two audios: {sim:.4f} (-1.0, 1.0).")
+        # # print(f"VSim score between two audios: {sim:.4f} (-1.0, 1.0).")
         sim_list.append(sim)
 
     return sim_list

@@ -40,7 +40,7 @@ def prepare_csv_wavs_dir(input_dir):
     polyphone = True
     for audio_path, text in audio_path_text_pairs:
         if not Path(audio_path).exists():
-            print(f"audio {audio_path} not found, skipping")
+            # print(f"audio {audio_path} not found, skipping")
             continue
         audio_duration = get_audio_duration(audio_path)
         # assume tokenizer = "pinyin"  ("pinyin" | "char")
@@ -78,7 +78,7 @@ def save_prepped_dataset(out_dir, result, duration_list, text_vocab_set, is_fine
     out_dir = Path(out_dir)
     # save preprocessed dataset to disk
     out_dir.mkdir(exist_ok=True, parents=True)
-    print(f"\nSaving to {out_dir} ...")
+    # print(f"\nSaving to {out_dir} ...")
 
     # dataset = Dataset.from_dict({"audio_path": audio_path_list, "text": text_list, "duration": duration_list})  # oom
     # dataset.save_to_disk(f"{out_dir}/raw", max_shard_size="2GB")
@@ -110,9 +110,9 @@ def save_prepped_dataset(out_dir, result, duration_list, text_vocab_set, is_fine
                 f.write(vocab + "\n")
 
     dataset_name = out_dir.stem
-    print(f"\nFor {dataset_name}, sample count: {len(result)}")
-    print(f"For {dataset_name}, vocab size is: {len(text_vocab_set)}")
-    print(f"For {dataset_name}, total {sum(duration_list)/3600:.2f} hours")
+    # print(f"\nFor {dataset_name}, sample count: {len(result)}")
+    # print(f"For {dataset_name}, vocab size is: {len(text_vocab_set)}")
+    # print(f"For {dataset_name}, total {sum(duration_list)/3600:.2f} hours")
 
 
 def prepare_and_save_set(inp_dir, out_dir, is_finetune: bool = True):

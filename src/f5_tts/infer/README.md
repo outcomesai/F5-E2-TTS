@@ -173,10 +173,10 @@ async def listen_to_voice(text, server_ip='localhost', server_port=9999):
         # Send only the text to the server
         await asyncio.get_event_loop().run_in_executor(None, client_socket.sendall, text.encode('utf-8'))
         await play_audio_stream()
-        print("Audio playback finished.")
+        # print("Audio playback finished.")
 
     except Exception as e:
-        print(f"Error in listen_to_voice: {e}")
+        # print(f"Error in listen_to_voice: {e}")
 
     finally:
         client_socket.close()

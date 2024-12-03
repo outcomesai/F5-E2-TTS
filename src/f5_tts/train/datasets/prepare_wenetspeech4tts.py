@@ -18,7 +18,7 @@ from f5_tts.model.utils import convert_char_to_pinyin
 
 
 def deal_with_sub_path_files(dataset_path, sub_path):
-    print(f"Dealing with: {sub_path}")
+    # print(f"Dealing with: {sub_path}")
 
     text_dir = os.path.join(dataset_path, sub_path, "txts")
     audio_dir = os.path.join(dataset_path, sub_path, "wavs")
@@ -67,7 +67,7 @@ def main():
     if not os.path.exists("data"):
         os.makedirs("data")
 
-    print(f"\nSaving to {save_dir} ...")
+    # print(f"\nSaving to {save_dir} ...")
     dataset = Dataset.from_dict({"audio_path": audio_path_list, "text": text_list, "duration": duration_list})
     dataset.save_to_disk(f"{save_dir}/raw", max_shard_size="2GB")  # arrow format
 
@@ -76,7 +76,7 @@ def main():
             {"duration": duration_list}, f, ensure_ascii=False
         )  # dup a json separately saving duration in case for DynamicBatchSampler ease
 
-    print("\nEvaluating vocab size (all characters and symbols / all phonemes) ...")
+    # print("\nEvaluating vocab size (all characters and symbols / all phonemes) ...")
     text_vocab_set = set()
     for text in tqdm(text_list):
         text_vocab_set.update(list(text))
@@ -88,8 +88,8 @@ def main():
     with open(f"{save_dir}/vocab.txt", "w") as f:
         for vocab in sorted(text_vocab_set):
             f.write(vocab + "\n")
-    print(f"\nFor {dataset_name}, sample count: {len(text_list)}")
-    print(f"For {dataset_name}, vocab size is: {len(text_vocab_set)}\n")
+    # print(f"\nFor {dataset_name}, sample count: {len(text_list)}")
+    # print(f"For {dataset_name}, vocab size is: {len(text_vocab_set)}\n")
 
 
 if __name__ == "__main__":
@@ -110,7 +110,7 @@ if __name__ == "__main__":
         "<SOME_PATH>/WenetSpeech4TTS/Premium",
     ][-dataset_choice:]
     save_dir = str(files("f5_tts").joinpath("../../")) + f"/data/{dataset_name}"
-    print(f"\nChoose Dataset: {dataset_name}, will save to {save_dir}\n")
+    # print(f"\nChoose Dataset: {dataset_name}, will save to {save_dir}\n")
 
     main()
 

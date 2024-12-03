@@ -110,7 +110,7 @@ def main():
         file_checkpoint = os.path.join(checkpoint_path, os.path.basename(ckpt_path))
         if not os.path.isfile(file_checkpoint):
             shutil.copy2(ckpt_path, file_checkpoint)
-            print("copy checkpoint for finetune")
+            # print("copy checkpoint for finetune")
 
     # Use the tokenizer and tokenizer_path provided in the command line arguments
     tokenizer = args.tokenizer
@@ -123,8 +123,8 @@ def main():
 
     vocab_char_map, vocab_size = get_tokenizer(tokenizer_path, tokenizer)
 
-    print("\nvocab : ", vocab_size)
-    print("\nvocoder : ", mel_spec_type)
+    # print("\nvocab : ", vocab_size)
+    # print("\nvocoder : ", mel_spec_type)
 
     mel_spec_kwargs = dict(
         n_fft=n_fft,

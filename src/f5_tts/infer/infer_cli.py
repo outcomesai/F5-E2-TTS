@@ -159,7 +159,7 @@ elif model == "E2-TTS":
         # ckpt_file = f"ckpts/{exp_name}/model_{ckpt_step}.pt"  # .pt | .safetensors; local path
 
 
-print(f"Using {model}...")
+# print(f"Using {model}...")
 ema_model = load_model(model_cls, model_cfg, ckpt_file, mel_spec_type=mel_spec_type, vocab_file=vocab_file)
 
 
@@ -174,9 +174,9 @@ def main_process(ref_audio, ref_text, text_gen, model_obj, mel_spec_type, remove
         voices[voice]["ref_audio"], voices[voice]["ref_text"] = preprocess_ref_audio_text(
             voices[voice]["ref_audio"], voices[voice]["ref_text"]
         )
-        print("Voice:", voice)
-        print("Ref_audio:", voices[voice]["ref_audio"])
-        print("Ref_text:", voices[voice]["ref_text"])
+        # print("Voice:", voice)
+        # print("Ref_audio:", voices[voice]["ref_audio"])
+        # print("Ref_text:", voices[voice]["ref_text"])
 
     generated_audio_segments = []
     reg1 = r"(?=\[\w+\])"
@@ -189,16 +189,16 @@ def main_process(ref_audio, ref_text, text_gen, model_obj, mel_spec_type, remove
         if match:
             voice = match[1]
         else:
-            print("No voice tag found, using main.")
+            # print("No voice tag found, using main.")
             voice = "main"
         if voice not in voices:
-            print(f"Voice {voice} not found, using main.")
+            # print(f"Voice {voice} not found, using main.")
             voice = "main"
         text = re.sub(reg2, "", text)
         gen_text = text.strip()
         ref_audio = voices[voice]["ref_audio"]
         ref_text = voices[voice]["ref_text"]
-        print(f"Voice: {voice}")
+        # print(f"Voice: {voice}")
         audio, final_sample_rate, spectragram = infer_process(
             ref_audio, ref_text, gen_text, model_obj, vocoder, mel_spec_type=mel_spec_type, speed=speed
         )
@@ -215,7 +215,7 @@ def main_process(ref_audio, ref_text, text_gen, model_obj, mel_spec_type, remove
             # Remove silence
             if remove_silence:
                 remove_silence_for_generated_wav(f.name)
-            print(f.name)
+            # print(f.name)
 
 
 def main():

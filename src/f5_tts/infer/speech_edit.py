@@ -155,8 +155,8 @@ if tokenizer == "pinyin":
     final_text_list = convert_char_to_pinyin(text_list)
 else:
     final_text_list = [text_list]
-print(f"text  : {text_list}")
-print(f"pinyin: {final_text_list}")
+# print(f"text  : {text_list}")
+# print(f"pinyin: {final_text_list}")
 
 # Duration
 ref_audio_len = 0
@@ -174,7 +174,7 @@ with torch.inference_mode():
         seed=seed,
         edit_mask=edit_mask,
     )
-    print(f"Generated mel: {generated.shape}")
+    # print(f"Generated mel: {generated.shape}")
 
     # Final result
     generated = generated.to(torch.float32)
@@ -190,4 +190,4 @@ with torch.inference_mode():
 
     save_spectrogram(gen_mel_spec[0].cpu().numpy(), f"{output_dir}/speech_edit_out.png")
     torchaudio.save(f"{output_dir}/speech_edit_out.wav", generated_wave, target_sample_rate)
-    print(f"Generated wav: {generated_wave.shape}")
+    # print(f"Generated wav: {generated_wave.shape}")

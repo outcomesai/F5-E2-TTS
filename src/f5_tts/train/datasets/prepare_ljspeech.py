@@ -32,7 +32,7 @@ def main():
     # save preprocessed dataset to disk
     if not os.path.exists(f"{save_dir}"):
         os.makedirs(f"{save_dir}")
-    print(f"\nSaving to {save_dir} ...")
+    # print(f"\nSaving to {save_dir} ...")
 
     with ArrowWriter(path=f"{save_dir}/raw.arrow") as writer:
         for line in tqdm(result, desc="Writing to raw.arrow ..."):
@@ -48,9 +48,9 @@ def main():
         for vocab in sorted(text_vocab_set):
             f.write(vocab + "\n")
 
-    print(f"\nFor {dataset_name}, sample count: {len(result)}")
-    print(f"For {dataset_name}, vocab size is: {len(text_vocab_set)}")
-    print(f"For {dataset_name}, total {sum(duration_list)/3600:.2f} hours")
+    # print(f"\nFor {dataset_name}, sample count: {len(result)}")
+    # print(f"For {dataset_name}, vocab size is: {len(text_vocab_set)}")
+    # print(f"For {dataset_name}, total {sum(duration_list)/3600:.2f} hours")
 
 
 if __name__ == "__main__":
@@ -60,6 +60,6 @@ if __name__ == "__main__":
     dataset_name = f"LJSpeech_{tokenizer}"
     meta_info = os.path.join(dataset_dir, "metadata.csv")
     save_dir = str(files("f5_tts").joinpath("../../")) + f"/data/{dataset_name}"
-    print(f"\nPrepare for {dataset_name}, will save to {save_dir}\n")
+    # print(f"\nPrepare for {dataset_name}, will save to {save_dir}\n")
 
     main()

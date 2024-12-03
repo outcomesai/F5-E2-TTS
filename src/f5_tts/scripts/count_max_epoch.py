@@ -1,7 +1,7 @@
 """ADAPTIVE BATCH SIZE"""
 
-print("Adaptive batch size: using grouping batch sampler, frames_per_gpu fixed fed in")
-print("  -> least padding, gather wavs with accumulated frames in a batch\n")
+# print("Adaptive batch size: using grouping batch sampler, frames_per_gpu fixed fed in")
+# print("  -> least padding, gather wavs with accumulated frames in a batch\n")
 
 # data
 total_hours = 95282
@@ -24,10 +24,10 @@ steps_per_epoch = updates_per_epoch * grad_accum
 
 # result
 epochs = wanted_max_updates / updates_per_epoch
-print(f"epochs should be set to: {epochs:.0f} ({epochs/grad_accum:.1f} x gd_acum {grad_accum})")
-print(f"progress_bar should show approx. 0/{updates_per_epoch:.0f} updates")
-print(f"                      or approx. 0/{steps_per_epoch:.0f} steps")
+# print(f"epochs should be set to: {epochs:.0f} ({epochs/grad_accum:.1f} x gd_acum {grad_accum})")
+# print(f"progress_bar should show approx. 0/{updates_per_epoch:.0f} updates")
+# print(f"                      or approx. 0/{steps_per_epoch:.0f} steps")
 
 # others
-print(f"total {total_hours:.0f} hours")
-print(f"mini-batch of {mini_batch_frames:.0f} frames, {mini_batch_hours:.2f} hours per mini-batch")
+# print(f"total {total_hours:.0f} hours")
+# print(f"mini-batch of {mini_batch_frames:.0f} frames, {mini_batch_hours:.2f} hours per mini-batch")

@@ -242,7 +242,7 @@ def load_dataset(
                     - "CustomDatasetPath" if you just want to pass the full path to a preprocessed dataset without relying on tokenizer
     """
 
-    print("Loading dataset ...")
+    # print("Loading dataset ...")
 
     if dataset_type == "CustomDataset":
         rel_data_path = str(files("f5_tts").joinpath(f"../../data/{dataset_name}_{tokenizer}"))
@@ -280,7 +280,7 @@ def load_dataset(
         )
 
     elif dataset_type == "HFDataset":
-        print(
+        # print(
             "Should manually modify the path of huggingface dataset to your need.\n"
             + "May also the corresponding script cuz different dataset may have different format."
         )

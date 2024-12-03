@@ -163,4 +163,4 @@ if __name__ == "__main__":
         seed=-1,  # random seed = -1
     )
 
-    print("seed :", f5tts.seed)
+    # print("seed :", f5tts.seed)

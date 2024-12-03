@@ -176,7 +176,7 @@ def main():
     # save preprocessed dataset to disk
     if not os.path.exists(f"{save_dir}"):
         os.makedirs(f"{save_dir}")
-    print(f"\nSaving to {save_dir} ...")
+    # print(f"\nSaving to {save_dir} ...")
 
     # dataset = Dataset.from_dict({"audio_path": audio_path_list, "text": text_list, "duration": duration_list})  # oom
     # dataset.save_to_disk(f"{save_dir}/raw", max_shard_size="2GB")
@@ -196,13 +196,13 @@ def main():
         for vocab in sorted(text_vocab_set):
             f.write(vocab + "\n")
 
-    print(f"\nFor {dataset_name}, sample count: {len(result)}")
-    print(f"For {dataset_name}, vocab size is: {len(text_vocab_set)}")
-    print(f"For {dataset_name}, total {sum(duration_list)/3600:.2f} hours")
+    # print(f"\nFor {dataset_name}, sample count: {len(result)}")
+    # print(f"For {dataset_name}, vocab size is: {len(text_vocab_set)}")
+    # print(f"For {dataset_name}, total {sum(duration_list)/3600:.2f} hours")
     if "ZH" in langs:
-        print(f"Bad zh transcription case: {total_bad_case_zh}")
+        # print(f"Bad zh transcription case: {total_bad_case_zh}")
     if "EN" in langs:
-        print(f"Bad en transcription case: {total_bad_case_en}\n")
+        # print(f"Bad en transcription case: {total_bad_case_en}\n")
 
 
 if __name__ == "__main__":
@@ -215,7 +215,7 @@ if __name__ == "__main__":
     dataset_dir = "<SOME_PATH>/Emilia_Dataset/raw"
     dataset_name = f"Emilia_{'_'.join(langs)}_{tokenizer}"
     save_dir = str(files("f5_tts").joinpath("../../")) + f"/data/{dataset_name}"
-    print(f"\nPrepare for {dataset_name}, will save to {save_dir}\n")
+    # print(f"\nPrepare for {dataset_name}, will save to {save_dir}\n")
 
     main()
 

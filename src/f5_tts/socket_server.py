@@ -44,14 +44,14 @@ class TTSStreamingProcessor:
 
     def _warm_up(self):
         """Warm up the model with a dummy input to ensure it's ready for real-time processing."""
-        print("Warming up the model...")
+        # print("Warming up the model...")
         ref_audio, ref_text = preprocess_ref_audio_text(self.ref_audio, self.ref_text)
         audio, sr = torchaudio.load(ref_audio)
         gen_text = "Warm-up text for the model."
 
         # Pass the vocoder as an argument here
         infer_batch_process((audio, sr), ref_text, [gen_text], self.model, self.vocoder, device=self.device)
-        print("Warm-up completed.")
+        # print("Warm-up completed.")
 
     def generate_stream(self, text, play_steps_in_s=0.5):
         """Generate audio in chunks and yield them in real-time."""
@@ -112,12 +112,12 @@ def handle_client(client_socket, processor):
                 client_socket.sendall(b"END_OF_AUDIO")
 
             except Exception as inner_e:
-                print(f"Error during processing: {inner_e}")
+                # print(f"Error during processing: {inner_e}")
                 traceback.print_exc()  # Print the full traceback to diagnose the issue
                 break
 
     except Exception as e:
-        print(f"Error handling client: {e}")
+        # print(f"Error handling client: {e}")
         traceback.print_exc()
     finally:
         client_socket.close()
@@ -127,11 +127,11 @@ def start_server(host, port, processor):
     server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     server.bind((host, port))
     server.listen(5)
-    print(f"Server listening on {host}:{port}")
+    # print(f"Server listening on {host}:{port}")
 
     while True:
         client_socket, addr = server.accept()
-        print(f"Accepted connection from {addr}")
+        # print(f"Accepted connection from {addr}")
         client_handler = Thread(target=handle_client, args=(client_socket, processor))
         client_handler.start()
 

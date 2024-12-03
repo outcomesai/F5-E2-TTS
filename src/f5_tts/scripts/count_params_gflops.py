@@ -35,5 +35,5 @@ text_length = 150
 flops, params = thop.profile(
     model, inputs=(torch.randn(1, frame_length, n_mel_channels), torch.zeros(1, text_length, dtype=torch.long))
 )
-print(f"FLOPs: {flops / 1e9} G")
-print(f"Params: {params / 1e6} M")
+# print(f"FLOPs: {flops / 1e9} G")
+# print(f"Params: {params / 1e6} M")

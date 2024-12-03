@@ -93,11 +93,11 @@ def load_vocoder(vocoder_name="vocos", is_local=False, local_path="", device=dev
     if vocoder_name == "vocos":
         # vocoder = Vocos.from_pretrained("charactr/vocos-mel-24khz").to(device)
         if is_local:
-            print(f"Load vocos from local path {local_path}")
+            # print(f"Load vocos from local path {local_path}")
             config_path = f"{local_path}/config.yaml"
             model_path = f"{local_path}/pytorch_model.bin"
         else:
-            print("Download Vocos from huggingface charactr/vocos-mel-24khz")
+            # print("Download Vocos from huggingface charactr/vocos-mel-24khz")
             repo_id = "charactr/vocos-mel-24khz"
             config_path = hf_hub_download(repo_id=repo_id, cache_dir=hf_cache_dir, filename="config.yaml")
             model_path = hf_hub_download(repo_id=repo_id, cache_dir=hf_cache_dir, filename="pytorch_model.bin")
@@ -117,7 +117,7 @@ def load_vocoder(vocoder_name="vocos", is_local=False, local_path="", device=dev
         try:
             from third_party.BigVGAN import bigvgan
         except ImportError:
-            print("You need to follow the README to init submodule and change the BigVGAN source code.")
+            # print("You need to follow the README to init submodule and change the BigVGAN source code.")
         if is_local:
             """download from https://huggingface.co/nvidia/bigvgan_v2_24khz_100band_256x/tree/main"""
             vocoder = bigvgan.BigVGAN.from_pretrained(local_path, use_cuda_kernel=False)
@@ -226,9 +226,9 @@ def load_model(
         vocab_file = str(files("f5_tts").joinpath("infer/examples/vocab.txt"))
     tokenizer = "custom"
 
-    print("\nvocab : ", vocab_file)
-    print("token : ", tokenizer)
-    print("model : ", ckpt_path, "\n")
+    # print("\nvocab : ", vocab_file)
+    # print("token : ", tokenizer)
+    # print("model : ", ckpt_path, "\n")
 
     vocab_char_map, vocab_size = get_tokenizer(vocab_file, tokenizer)
     model = CFM(
@@ -338,7 +338,7 @@ def preprocess_ref_audio_text(ref_audio_orig, ref_text, clip_short=True, show_in
         else:
             ref_text += ". "
 
-    print("ref_text  ", ref_text)
+    # print("ref_text  ", ref_text)
 
     return ref_audio, ref_text
 
@@ -369,7 +369,7 @@ def infer_process(
     max_chars = int(len(ref_text.encode("utf-8")) / (audio.shape[-1] / sr) * (25 - audio.shape[-1] / sr))
     gen_text_batches = chunk_text(gen_text, max_chars=max_chars)
     for i, gen_text in enumerate(gen_text_batches):
-        print(f"gen_text {i}", gen_text)
+        # print(f"gen_text {i}", gen_text)
 
     show_info(f"Generating audio in {len(gen_text_batches)} batches...")
     return infer_batch_process(

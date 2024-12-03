@@ -200,7 +200,7 @@ def main():
     accelerator.wait_for_everyone()
     if accelerator.is_main_process:
         timediff = time.time() - start
-        print(f"Done batch inference in {timediff / 60 :.2f} minutes.")
+        # print(f"Done batch inference in {timediff / 60 :.2f} minutes.")
 
 
 if __name__ == "__main__":
