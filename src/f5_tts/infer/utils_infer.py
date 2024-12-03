@@ -274,7 +274,7 @@ def remove_silence_edges(audio, silence_threshold=-42):
 
 
 def preprocess_ref_audio_text(ref_audio_orig, ref_text, clip_short=True, show_info=print, device=device):
-    show_info("Converting audio...")
+    # show_info("Converting audio...")
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as f:
         aseg = AudioSegment.from_file(ref_audio_orig)
 
@@ -286,7 +286,7 @@ def preprocess_ref_audio_text(ref_audio_orig, ref_text, clip_short=True, show_in
             non_silent_wave = AudioSegment.silent(duration=0)
             for non_silent_seg in non_silent_segs:
                 if len(non_silent_wave) > 6000 and len(non_silent_wave + non_silent_seg) > 15000:
-                    show_info("Audio is over 15s, clipping short. (1)")
+                    # show_info("Audio is over 15s, clipping short. (1)")
                     break
                 non_silent_wave += non_silent_seg
 
@@ -298,7 +298,7 @@ def preprocess_ref_audio_text(ref_audio_orig, ref_text, clip_short=True, show_in
                 non_silent_wave = AudioSegment.silent(duration=0)
                 for non_silent_seg in non_silent_segs:
                     if len(non_silent_wave) > 6000 and len(non_silent_wave + non_silent_seg) > 15000:
-                        show_info("Audio is over 15s, clipping short. (2)")
+                        # show_info("Audio is over 15s, clipping short. (2)")
                         break
                     non_silent_wave += non_silent_seg
 
@@ -307,7 +307,7 @@ def preprocess_ref_audio_text(ref_audio_orig, ref_text, clip_short=True, show_in
             # 3. if no proper silence found for clipping
             if len(aseg) > 15000:
                 aseg = aseg[:15000]
-                show_info("Audio is over 15s, clipping short. (3)")
+                # show_info("Audio is over 15s, clipping short. (3)")
 
         aseg = remove_silence_edges(aseg) + AudioSegment.silent(duration=50)
         aseg.export(f.name, format="wav")
@@ -322,15 +322,16 @@ def preprocess_ref_audio_text(ref_audio_orig, ref_text, clip_short=True, show_in
         global _ref_audio_cache
         if audio_hash in _ref_audio_cache:
             # Use cached asr transcription
-            show_info("Using cached reference text...")
+            # show_info("Using cached reference text...")
             ref_text = _ref_audio_cache[audio_hash]
         else:
-            show_info("No reference text provided, transcribing reference audio...")
+            # show_info("No reference text provided, transcribing reference audio...")
             ref_text = transcribe(ref_audio)
             # Cache the transcribed text (not caching custom ref_text, enabling users to do manual tweak)
             _ref_audio_cache[audio_hash] = ref_text
     else:
-        show_info("Using custom reference text...")
+        # # show_info("Using custom reference text...")
+        pass
 
     # Ensure ref_text ends with a proper sentence-ending punctuation
     if not ref_text.endswith(". ") and not ref_text.endswith("。"):
@@ -373,7 +374,7 @@ def infer_process(
         # print(f"gen_text {i}", gen_text)
         pass
 
-    show_info(f"Generating audio in {len(gen_text_batches)} batches...")
+    # show_info(f"Generating audio in {len(gen_text_batches)} batches...")
     return infer_batch_process(
         (audio, sr),
         ref_text,

@@ -112,14 +112,14 @@ def infer(
     elif model == "E2-TTS":
         global E2TTS_ema_model
         if E2TTS_ema_model is None:
-            show_info("Loading E2-TTS model...")
+            # show_info("Loading E2-TTS model...")
             E2TTS_ema_model = load_e2tts()
         ema_model = E2TTS_ema_model
     elif isinstance(model, list) and model[0] == "Custom":
         assert not USING_SPACES, "Only official checkpoints allowed in Spaces."
         global custom_ema_model, pre_custom_path
         if pre_custom_path != model[1]:
-            show_info("Loading Custom TTS model...")
+            # show_info("Loading Custom TTS model...")
             custom_ema_model = load_custom(model[1], vocab_path=model[2])
             pre_custom_path = model[1]
         ema_model = custom_ema_model
@@ -540,13 +540,13 @@ Have a conversation with an AI using your reference voice!
             global chat_model_state, chat_tokenizer_state
             if chat_model_state is None:
                 show_info = gr.Info
-                show_info("Loading chat model...")
+                # show_info("Loading chat model...")
                 model_name = "Qwen/Qwen2.5-3B-Instruct"
                 chat_model_state = AutoModelForCausalLM.from_pretrained(
                     model_name, torch_dtype="auto", device_map="auto"
                 )
                 chat_tokenizer_state = AutoTokenizer.from_pretrained(model_name)
-                show_info("Chat model loaded.")
+                # show_info("Chat model loaded.")
 
             return gr.update(visible=False), gr.update(visible=True)
 
